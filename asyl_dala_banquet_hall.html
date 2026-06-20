@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asyl Dala — Премиальный банкетный зал в Алматы</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#faf8f5;color:#2a2520;}
+.wrap{max-width:520px;margin:0 auto;background:#fff;min-height:100vh;}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.5rem;position:sticky;top:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);z-index:50;border-bottom:0.5px solid #ece6dc;}
+.logo{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:#2a2520;}
+.nav-cta{background:#2a2520;color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;}
+
+/* HERO */
+.hero{position:relative;height:340px;background:url("1.jpg") center/cover no-repeat;overflow:hidden;}
+.hero-pattern{position:absolute;inset:0;opacity:0.08;background-image:radial-gradient(circle,#c9a84c 1px,transparent 1px);background-size:24px 24px;}
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 1.5rem;background:linear-gradient(180deg,transparent 30%,rgba(20,16,10,0.85) 100%);}
+.hero-rating{position:absolute;top:18px;right:18px;background:rgba(20,16,10,0.6);backdrop-filter:blur(6px);color:#f0e6cc;font-size:13px;padding:6px 12px;border-radius:20px;display:flex;align-items:center;gap:5px;border:0.5px solid rgba(201,168,76,0.3);}
+.hero-rating i{color:#c9a84c;font-size:14px;}
+.hero-icon-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);font-size:80px;color:rgba(201,168,76,0.15);}
+.hero h1{font-family:'Playfair Display',serif;font-size:34px;font-weight:600;color:#fff;margin-bottom:6px;}
+.hero p{font-size:14px;color:rgba(255,255,255,0.75);}
+
+/* GALLERY */
+.gallery-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:10px 1.5rem;}
+.gallery-thumb{aspect-ratio:1;background:#f0ebe0;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#b8ab94;cursor:pointer;transition:transform 0.15s;}
+.gallery-thumb:hover{transform:scale(1.04);}
+.gallery-thumb i{font-size:18px;}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:1.25rem 1.5rem;}
+.stat-card{background:#faf6ee;border-radius:10px;padding:0.9rem 0.5rem;text-align:center;}
+.stat-card i{font-size:19px;color:#a0843c;margin-bottom:5px;display:block;}
+.stat-card .val{font-size:14px;font-weight:600;}
+.stat-card .lbl{font-size:10.5px;color:#8a8276;margin-top:1px;}
+
+/* SECTIONS */
+.section{padding:1.5rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:9px;color:#2a2520;}
+.section-title i{font-size:18px;color:#a0843c;}
+
+.amenities{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.amenity{display:flex;align-items:center;gap:7px;padding:11px 12px;background:#faf6ee;border-radius:8px;font-size:12.5px;color:#3a352c;}
+.amenity i{font-size:15px;color:#5a8a3c;flex-shrink:0;}
+
+/* REVIEWS */
+.review-card{background:#fff;border:0.5px solid #ece6dc;border-radius:14px;padding:1.1rem 1.2rem;margin-bottom:10px;}
+.review-top{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+.review-avatar{width:36px;height:36px;border-radius:50%;background:#f0e6cc;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#a0843c;flex-shrink:0;}
+.review-name{font-size:13.5px;font-weight:600;}
+.review-stars{font-size:11px;color:#c9a030;}
+.review-text{font-size:13px;color:#6a6358;line-height:1.65;}
+
+/* CALCULATOR */
+.calc-card{background:#fff;border:1px solid #ece6dc;border-radius:18px;padding:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.03);}
+.calc-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:1.2rem;}
+.calc-row label{font-size:13.5px;color:#6a6358;min-width:130px;}
+.calc-row input[type=range]{flex:1;accent-color:#a0843c;}
+.calc-out{font-size:14px;font-weight:600;min-width:36px;text-align:right;}
+
+.menu-tabs{display:flex;gap:6px;margin-bottom:0.9rem;}
+.menu-tab{font-size:12px;padding:7px 15px;border-radius:8px;border:1px solid #ece6dc;background:#fff;cursor:pointer;color:#8a8276;font-family:'Inter',sans-serif;}
+.menu-tab.active{background:#2a2520;color:#fff;border-color:#2a2520;}
+
+.menu-list{display:flex;flex-direction:column;gap:8px;margin-bottom:1.3rem;}
+.menu-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid #ece6dc;border-radius:10px;cursor:pointer;transition:all 0.15s;}
+.menu-item.active{border-color:#c9a84c;background:#fdf9ef;}
+.menu-left{display:flex;align-items:center;gap:10px;}
+.menu-left input{width:16px;height:16px;accent-color:#a0843c;}
+.menu-icon{font-size:17px;color:#8a8276;}
+.menu-name{font-size:13.5px;font-weight:500;}
+.menu-desc{font-size:11px;color:#a39a8a;}
+.menu-price{font-size:12.5px;color:#8a8276;white-space:nowrap;}
+
+.cal-legend{display:flex;gap:16px;font-size:11.5px;color:#8a8276;margin-bottom:0.6rem;}
+.legend-dot{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-1px;}
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:1.3rem;}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:12px;border-radius:8px;cursor:pointer;border:1px solid #ece6dc;}
+.cal-day.busy{background:#fbeae5;color:#c0654a;cursor:not-allowed;border:none;}
+.cal-day.free{background:#eaf3de;color:#5a8a2e;border:none;}
+.cal-day.selected{outline:2px solid #a0843c;outline-offset:1px;}
+
+.total-bar{display:flex;align-items:center;justify-content:space-between;background:#faf6ee;border-radius:12px;padding:1.15rem 1.3rem;margin-bottom:1.1rem;}
+.total-bar .lbl{font-size:11.5px;color:#8a8276;}
+.total-bar .amt{font-size:26px;font-weight:600;font-family:'Playfair Display',serif;color:#2a2520;}
+.total-bar .sub{font-size:10.5px;color:#a39a8a;margin-top:2px;}
+
+.submit-btn{width:100%;background:#2a2520;color:#f0e6cc;border:none;padding:15px;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;transition:opacity 0.2s;}
+.submit-btn:hover{opacity:0.88;}
+
+.contact-row{display:flex;gap:10px;margin-top:0.8rem;}
+.contact-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:10px;border:1px solid #ece6dc;background:#fff;font-size:13px;cursor:pointer;color:#2a2520;font-family:'Inter',sans-serif;}
+.contact-btn:hover{background:#faf6ee;}
+.contact-btn i{font-size:16px;}
+.contact-btn.whatsapp i{color:#25D366;}
+
+.map-card{height:150px;background:#faf6ee;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#a39a8a;}
+.map-card i{font-size:26px;}
+.map-card span{font-size:12px;}
+
+footer{text-align:center;padding:2rem 1.5rem;color:#a39a8a;font-size:12px;border-top:0.5px solid #ece6dc;margin-top:1rem;}
+footer .footer-logo{font-family:'Playfair Display',serif;font-size:16px;color:#2a2520;margin-bottom:6px;}
+
+/* MODAL TOAST */
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-100px);background:#2a2520;color:#f0e6cc;padding:14px 22px;border-radius:12px;font-size:13.5px;display:flex;align-items:center;gap:10px;z-index:200;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 8px 30px rgba(0,0,0,0.25);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast i{color:#c9a84c;font-size:18px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <div class="logo">Asyl Dala</div>
+  <button class="nav-cta" onclick="document.querySelector('.calc-card').scrollIntoView({behavior:'smooth'})">Рассчитать</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-pattern"></div>
+  <i class="ti ti-building-pavilion hero-icon-bg" aria-hidden="true"></i>
+  <div class="hero-rating"><i class="ti ti-star-filled" aria-hidden="true"></i>4.9 · 218 отзывов</div>
+  <div class="hero-content">
+    <h1>Asyl Dala</h1>
+    <p>Премиальный банкетный зал · Алматы, мкр. Самал-2</p>
+  </div>
+</div>
+
+<div class="gallery-strip">
+  <div class="gallery-thumb"><i class="ti ti-photo" aria-hidden="true"></i>
+<img src="малый зал.jpg" alt="Малый зал" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+</div>
+  <div class="gallery-thumb"><i class="ti ti-photo" aria-hidden="true"></i>
+<img src="интерьер.jpg" alt="Интерьер" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+</div>
+  <div class="gallery-thumb"><i class="ti ti-photo" aria-hidden="true"></i><img src="белый.jpg" alt="белый" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+</div>
+  <div class="gallery-thumb"><i class="ti ti-photo" aria-hidden="true"></i><img src="грандиоззный.jpg" alt="Грандиозный" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+</div>
+  <div class="gallery-thumb"><i class="ti ti-photo" aria-hidden="true"></i>
+<img src="столы.jpg" alt="столы" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+</div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card"><i class="ti ti-users" aria-hidden="true"></i><div class="val">50–250</div><div class="lbl">гостей</div></div>
+  <div class="stat-card"><i class="ti ti-ruler-2" aria-hidden="true"></i><div class="val">350 м²</div><div class="lbl">площадь</div></div>
+  <div class="stat-card"><i class="ti ti-parking" aria-hidden="true"></i><div class="val">80 мест</div><div class="lbl">парковка</div></div>
+  <div class="stat-card"><i class="ti ti-clock" aria-hidden="true"></i><div class="val">до 6:00</div><div class="lbl">без границ</div></div>
+</div>
+
+<div class="section">
+  <p class="section-title"><i class="ti ti-sparkles" aria-hidden="true"></i>Удобства</p>
+  <div class="amenities">
+    <div class="amenity"><i class="ti ti-microphone-2" aria-hidden="true"></i>Сцена и звук</div>
+    <div class="amenity"><i class="ti ti-video" aria-hidden="true"></i>Видеосъёмка</div>
+    <div class="amenity"><i class="ti ti-flower" aria-hidden="true"></i>Декор зала</div>
+    <div class="amenity"><i class="ti ti-air-conditioning" aria-hidden="true"></i>Кондиционер</div>
+    <div class="amenity"><i class="ti ti-coat-hanger" aria-hidden="true"></i>Гардероб</div>
+    <div class="amenity"><i class="ti ti-wifi" aria-hidden="true"></i>Wi-Fi</div>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-title"><i class="ti ti-message-circle" aria-hidden="true"></i>Отзывы гостей</p>
+  <div class="review-card">
+    <div class="review-top">
+      <div class="review-avatar">АМ</div>
+      <div>
+        <div class="review-name">Айгерим М.</div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+    </div>
+    <p class="review-text">Проводили той дочери — всё было на высшем уровне, персонал внимательный, кухня отменная.</p>
+  </div>
+  <div class="review-card">
+    <div class="review-top">
+      <div class="review-avatar">ДК</div>
+      <div>
+        <div class="review-name">Дамир К.</div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+    </div>
+    <p class="review-text">Юбилей отца прошёл идеально, зал просторный и красивый, гости до сих пор вспоминают.</p>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-title"><i class="ti ti-calculator" aria-hidden="true"></i>Рассчитать стоимость</p>
+  <div class="calc-card">
+    <div class="calc-row">
+      <label>Количество гостей</label>
+      <input type="range" id="guests" min="50" max="250" step="10" value="120">
+      <span class="calc-out" id="guestsOut">120</span>
+    </div>
+
+    <p style="font-size:13px;color:#6a6358;margin-bottom:8px;">Меню банкета</p>
+    <div class="menu-tabs">
+      <div class="menu-tab active" data-tab="kazakh">Казахская кухня</div>
+      <div class="menu-tab" data-tab="euro">Европейская</div>
+    </div>
+    <div class="menu-list" id="menuList">
+      <div class="menu-item active" data-price="3500">
+        <div class="menu-left"><input type="checkbox" checked><i class="ti ti-salad menu-icon" aria-hidden="true"></i><div><div class="menu-name">Казахские салаты</div><div class="menu-desc">Ассорти из 5 видов</div></div></div>
+        <span class="menu-price">3 500 ₸/чел</span>
+      </div>
+      <div class="menu-item active" data-price="8000">
+        <div class="menu-left"><input type="checkbox" checked><i class="ti ti-meat menu-icon" aria-hidden="true"></i><div><div class="menu-name">Бешбармак</div><div class="menu-desc">Говядина и баранина</div></div></div>
+        <span class="menu-price">8 000 ₸/чел</span>
+      </div>
+      <div class="menu-item" data-price="2500">
+        <div class="menu-left"><input type="checkbox"><i class="ti ti-bowl menu-icon" aria-hidden="true"></i><div><div class="menu-name">Плов узбекский</div><div class="menu-desc">С говядиной</div></div></div>
+        <span class="menu-price">2 500 ₸/чел</span>
+      </div>
+      <div class="menu-item" data-price="4000">
+        <div class="menu-left"><input type="checkbox"><i class="ti ti-cake menu-icon" aria-hidden="true"></i><div><div class="menu-name">Десерт-стол</div><div class="menu-desc">Торт и сладости</div></div></div>
+        <span class="menu-price">4 000 ₸/чел</span>
+      </div>
+      <div class="menu-item" data-price="1500">
+        <div class="menu-left"><input type="checkbox"><i class="ti ti-glass menu-icon" aria-hidden="true"></i><div><div class="menu-name">Безалкогольные напитки</div><div class="menu-desc">Соки, вода, лимонад</div></div></div>
+        <span class="menu-price">1 500 ₸/чел</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:#6a6358;margin-bottom:8px;">Свободные даты</p>
+    <div class="cal-legend">
+      <span><span class="legend-dot" style="background:#a8d178;"></span>Свободно</span>
+      <span><span class="legend-dot" style="background:#f0a890;"></span>Занято</span>
+    </div>
+    <div class="calendar" id="calendar"></div>
+
+    <div class="total-bar">
+      <div>
+        <div class="lbl">Итого за зал и меню</div>
+        <div class="amt" id="totalAmt">1 380 000 ₸</div>
+        <div class="sub" id="totalSub">120 гостей · аренда + выбранное меню</div>
+      </div>
+      <i class="ti ti-receipt-2" aria-hidden="true" style="font-size:30px;color:#c9bba0;"></i>
+    </div>
+
+    <button class="submit-btn" onclick="showToast()">Оставить заявку на расчёт</button>
+
+    <div class="contact-row">
+      <button class="contact-btn whatsapp"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i>WhatsApp</button>
+      <button class="contact-btn"><i class="ti ti-phone" aria-hidden="true"></i>Позвонить</button>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-title"><i class="ti ti-map-pin" aria-hidden="true"></i>Местоположение</p>
+  <div class="map-card" style="padding:0; overflow:hidden; border-radius:14px; height:150px;">
+<iframe id="map_99764164" frameborder="0" width="100%" height="150px" src="https://makemap.2gis.ru/widget?data=eJw1j01rg0AQhv_L9FgJo-vWD8ihGGpSRDQ9lLTkIHGSLqyurJumqeS_d9VmjvN-8LwDKF2Tpjol1ZDRgnqIPwcw144ghheqzFkTONBp1ZE2kz7AQUmlrf6AXugePasbYeSYwNd12edJhJkuTZ0mmLGtiBK-yROG2ao8X5ZLa6-pP2jRGaFaGyrWz4-4m4Ih7r7L85s1RukKd8etyBO_SKJLcZqCv5u2ph-IXbzfzYHTDH8d0f7JCyVaY_0HZQeKtjLTsCBYoM-56zs-WzAM0eV7mxf1WBi6t70DTdUVqhcz2QCyMhDfzZ7HOPN4EDogR3muizj38QlZhMzyKdXYstC22oVKyvcvIvkxfY-V7On2B8tEcC8" sandbox="allow-modals allow-forms allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation"></iframe>
+
+</div>
+</div>
+
+<footer>
+  <div class="footer-logo">Asyl Dala</div>
+  <p>+7 777 000 00 00 · Алматы, мкр. Самал-2</p>
+</footer>
+
+</div>
+
+<div class="toast" id="toast">
+  <i class="ti ti-circle-check" aria-hidden="true"></i>
+  <span>Заявка отправлена! Мы свяжемся с вами в течение 15 минут</span>
+</div>
+
+<script>
+const guestsSlider = document.getElementById('guests');
+const guestsOut = document.getElementById('guestsOut');
+const menuItems = document.querySelectorAll('.menu-item');
+const totalAmt = document.getElementById('totalAmt');
+const totalSub = document.getElementById('totalSub');
+const BASE_HALL_PRICE = 400000;
+
+function calcTotal(){
+  const guests = parseInt(guestsSlider.value);
+  guestsOut.textContent = guests;
+  let perGuest = 0;
+  let selectedCount = 0;
+  menuItems.forEach(item => {
+    const checkbox = item.querySelector('input[type=checkbox]');
+    if(checkbox.checked){
+      perGuest += parseInt(item.dataset.price);
+      selectedCount++;
+    }
+  });
+  const total = BASE_HALL_PRICE + perGuest * guests;
+  totalAmt.textContent = new Intl.NumberFormat('ru-RU').format(total) + ' ₸';
+  totalSub.textContent = guests + ' гостей · ' + selectedCount + ' позиций меню';
+}
+
+guestsSlider.addEventListener('input', calcTotal);
+menuItems.forEach(item => {
+  item.addEventListener('click', (e) => {
+    const checkbox = item.querySelector('input[type=checkbox]');
+    if(e.target.tagName !== 'INPUT'){
+      checkbox.checked = !checkbox.checked;
+    }
+    item.classList.toggle('active', checkbox.checked);
+    calcTotal();
+  });
+});
+
+document.querySelectorAll('.menu-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+
+const calendar = document.getElementById('calendar');
+const busyDays = [3,4,11,12,18,19,25,26];
+for(let d=1; d<=30; d++){
+  const el = document.createElement('div');
+  const isBusy = busyDays.includes(d);
+  el.className = 'cal-day ' + (isBusy ? 'busy' : 'free');
+  el.textContent = d;
+  if(!isBusy){
+    el.addEventListener('click', () => {
+      document.querySelectorAll('.cal-day').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+    });
+  }
+  calendar.appendChild(el);
+}
+
+function showToast(){
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+calcTotal();
+</script>
+</body>
+</html>
